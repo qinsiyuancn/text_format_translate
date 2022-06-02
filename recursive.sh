@@ -22,11 +22,12 @@ recursive()
         if [ -d $INPUT/$1/$i ]
         then
             mkdir "$OUTPUT/$1/$i"
-            recursive "$1/$i"
+            recursive "$1/$i" &
         else
             ./translate.sh "$INPUT/$1/$i" "$OUTPUT/$1" & 
         fi
     done
+    wait
 }
 
 recursive '.'
